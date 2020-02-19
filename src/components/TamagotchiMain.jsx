@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import TamagotchiControl from './TamagotchiControl';
 
 function TamagotchiMain(props) {
+
+  function tempHungry() {
+    props.makeHungry();
+  }
+  function tempSleepy() {
+    props.makeSleepy();
+  }
+  function tempBored() {
+    props.makeBored();
+  }
+
   return (
     <div className="tamagotchiMain">
     <style jsx>{`
@@ -28,6 +39,9 @@ function TamagotchiMain(props) {
       sleepThem={props.sleepThem}
       entertainThem={props.entertainThem}
       />
+      <button onClick={tempHungry}>hunger</button>
+      <button onClick={tempSleepy}>sleep</button>
+      <button onClick={tempBored}>bored</button>
     </div>
   )
 }
@@ -37,9 +51,14 @@ TamagotchiMain.propTypes = {
   hunger: PropTypes.number,
   sleep: PropTypes.number,
   bored: PropTypes.number,
+
   feedThem: PropTypes.func,
   sleepThem: PropTypes.func,
-  entertainThem: PropTypes.func
+  entertainThem: PropTypes.func,
+
+  makeHungry: PropTypes.func,
+  makeSleepy: PropTypes.func,
+  makeBored: PropTypes.func
 }
 
 export default TamagotchiMain;
