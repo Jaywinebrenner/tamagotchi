@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import TamagotchiMain from './components/TamagotchiMain';
+import Death from './components/Death';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,15 +29,25 @@ class App extends React.Component {
     let testHunger = this.state.hunger;
     let testSleep = this.state.sleep;
     let testBored = this.state.bored;
-    if (testHunger <= 0){
-      console.log("There's nothing funny about starvation");
-      clearInterval(this.deathTimer);
-    } else if (testSleep <= 0) {
-      console.log('you played World of Warcraft until you croaked');
-      clearInterval(this.deathTimer);
-    } else if (testBored <= 0) {
-      console.log('you watched too much c-span');
-      clearInterval(this.deathTimer);
+
+    if (this.state.dead === false) {
+      let deadStatus = false;
+      if (testHunger <= 0){
+        clearInterval(this.deathTimer);
+        deadStatus = true;
+        this.state.message = "There's nothing funny about starvation";
+      } else if (testSleep <= 0) {
+        clearInterval(this.deathTimer);
+        deadStatus = true;
+        this.state.message = 'you played World of Warcraft until you croaked';
+      } else if (testBored <= 0) {
+        clearInterval(this.deathTimer);
+        deadStatus = true;
+        this.state.message = 'you watched too much c-span';
+      }
+      if (deadStatus === true) {
+        this.setState({dead: true});
+      }
     }
   }
 
@@ -75,9 +86,12 @@ entertainThem() {
 
 
 render(){
-  return (
-    <div>
-    <TamagotchiMain
+  let currentContent = null;
+  if (this.state.dead === true) {
+    currentContent = <Death message={this.state.message}/>
+  }
+  else {
+    currentContent = <TamagotchiMain
     name="Jim John"
     hunger={this.state.hunger}
     sleep={this.state.sleep}
@@ -87,6 +101,11 @@ render(){
     entertainThem={this.entertainThem}
     slowlyDie={this.slowlyDie}
     />
+  }
+
+  return (
+    <div>
+      {currentContent}
     </div>
   );
 }
