@@ -4,14 +4,8 @@ import TamagotchiControl from './TamagotchiControl';
 
 function TamagotchiMain(props) {
 
-  function tempHungry() {
-    props.makeHungry();
-  }
-  function tempSleepy() {
-    props.makeSleepy();
-  }
-  function tempBored() {
-    props.makeBored();
+  function tempSlowlyDie() {
+    props.slowlyDie();
   }
 
   return (
@@ -25,7 +19,19 @@ function TamagotchiMain(props) {
       }
       .statusDisplay {
         display: flex;
-      justify-content: space-evenly;
+        justify-content: space-evenly;
+      }
+      .pacman {
+        width: 0;
+        height: 0;
+        border-right: 40px solid transparent;
+        border-top: 40px solid #ffde00;
+        border-left: 40px solid #ffde00;
+        border-bottom: 40px solid #ffde00;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
       }
       `}</style>
       <h3>{props.name}</h3>
@@ -39,9 +45,8 @@ function TamagotchiMain(props) {
       sleepThem={props.sleepThem}
       entertainThem={props.entertainThem}
       />
-      <button onClick={tempHungry}>hunger</button>
-      <button onClick={tempSleepy}>sleep</button>
-      <button onClick={tempBored}>bored</button>
+      <div className="pacman"></div>
+      <button onClick={tempSlowlyDie}>slowly die</button>
     </div>
   )
 }
@@ -56,9 +61,8 @@ TamagotchiMain.propTypes = {
   sleepThem: PropTypes.func,
   entertainThem: PropTypes.func,
 
-  makeHungry: PropTypes.func,
-  makeSleepy: PropTypes.func,
-  makeBored: PropTypes.func
+  slowlyDie: PropTypes.func,
+
 }
 
 export default TamagotchiMain;
