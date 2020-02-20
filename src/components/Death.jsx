@@ -25,6 +25,7 @@ function Death(props) {
       `}</style>
         <h1 className='deadText'>YOU DEAD!</h1>
         <h3>{props.message}</h3>
+        <a href='./'>Play again</a>
     </div>
   )
 }
