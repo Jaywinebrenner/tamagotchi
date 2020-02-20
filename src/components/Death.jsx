@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 function Death(props) {
 
 
@@ -16,7 +17,10 @@ function Death(props) {
         font-weight: bold;
         color: #660000;
         text-shadow: 4px 4px 3px rgb(75, 0, 0);
+
       }
+
+
 
       `}</style>
         <h1 className='deadText'>YOU DEAD!</h1>

@@ -46,7 +46,7 @@ function TamagotchiMain(props) {
       entertainThem={props.entertainThem}
       />
       <div className="pacman"></div>
-      <button onClick={tempSlowlyDie}>slowly die</button>
+      <button onClick={tempSlowlyDie}>quickly die</button>
     </div>
   )
 }

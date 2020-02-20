@@ -2,14 +2,16 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import TamagotchiMain from './components/TamagotchiMain';
 import Death from './components/Death';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hunger: 10,
-      sleep: 10,
-      bored: 10,
+      hunger: 5,
+      sleep: 5,
+      bored: 5,
       dead: false
     };
 
@@ -72,15 +74,15 @@ class App extends React.Component {
 
 // Saving the Tamagotchi / User Input functions
 feedThem(){
-  let newHunger = 100;
+  let newHunger = 50;
   this.setState({hunger: newHunger});
 }
 sleepThem(){
-  let newSleep = 100;
+  let newSleep = 50;
   this.setState({sleep: newSleep});
 }
 entertainThem() {
-  let newBored = 100;
+  let newBored = 50;
   this.setState({bored: newBored});
 }
 
@@ -105,7 +107,9 @@ render(){
 
   return (
     <div>
+    <Header/>
       {currentContent}
+      <Footer/>
     </div>
   );
 }
